@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link href="public/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="drop-mask"></div>
+
+<div class="drop-indicator top"></div>
+<div class="drop-indicator right"></div>
+<div class="drop-indicator left"></div>
+<div class="drop-indicator bottom"></div>
+<!--<script src="build/bundle.js"></script>-->
+<script src="app.js"></script>
+
+<script>
+
+   // $(document).ready(function () {
+
+        /* window.ondragenter = function (e) {
+
+         $('#drop-mask').show();
+         $('.drop-indicator').show();
+         }
+
+         window.ondrop = function (e) {
+
+         e.preventDefault();
+         e.stopPropagation();
+         $('#drop-mask').hide();
+         win.debug('drag completed');
+         $('.drop-indicator').hide();
+         alert('drop');
+         var file = e.dataTransfer.files[0];
+
+         console.debug(files);
+
+         return false;
+         }*/
+
+   // });
+</script>
+
+
+
+
+<div id="status">123</div>
+
+<table>
+    <tr>
+        <td>Имя</td>
+        <td>Размер</td>
+        <td>Скачано</td>
+        <td>Прогресс</td>
+        <td>Осталось</td>
+    </tr>
+    <tbody>
+    <tr>
+        <td id="torrent-name"></td>
+        <td id="size"></td>
+        <td id="downloaded"></td>
+        <td id="progress"></td>
+        <td id="timeRemainig"></td>
+    </tr>
+
+    </tbody>
+</table>
+
+<script>
+
+</script>
+
+</body>
+</html>
