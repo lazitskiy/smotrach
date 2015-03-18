@@ -11,13 +11,18 @@ module.exports = function () {
     var gui = global.window.nwDispatcher.requireNwGui();
     //}
 
-    var Settings = {};
+    var settings = {};
 
-    Settings.gui = gui;
-    Settings.dataPath = gui.App.dataPath;
-    Settings.appName = 'Smotrach';
-    Settings.tmpLocation = path.join(os.tmpDir(), 'Smotrach');
-    Settings.databaseLocation = path.join(Settings.dataPath, 'data');
+    settings.gui = gui;
+    settings.dataPath = gui.App.dataPath;
+    settings.appName = 'Smotrach';
+    settings.tmpLocation = path.join(os.tmpDir(), 'Smotrach');
+    settings.databaseLocation = path.join(settings.dataPath, 'data');
 
-    return Settings;
+    /**
+     * Api settings
+     */
+    settings.provider = 'sdf';
+
+    return settings;
 }

@@ -1,5 +1,35 @@
-*{
-    padding: 0; margin: 0;
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    color: #999;
+    text-decoration: none;
+    display: block;
+}
+
+a.active, a:hover {
+    border-bottom: 3px solid #ff66cc;
+}
+h2, .h2 {
+    font-size: 30px;
+    color: #ff66cc;
+}
+
+.menu{
+    height: 34px;
+}
+
+body {
+    background: #050505;
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 13px;
+    color: #999
+}
+
+.menu li {
+    display: inline-block;
 }
 
 #drop-mask {

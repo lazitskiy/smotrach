@@ -1,12 +1,58 @@
 /**
  * Created by vaso on 15.03.15.
  */
-fs = require('fs');
-path = require('path');
+var fs = require('fs');
+var path = require('path');
+var settings = require('./js/settings');
 
-Settings = require('./js/Settings');
 
-win = Settings().gui.Window.get();
+var app = new Backbone.Marionette.Application();
+_.extend(app, {
+    models: {},
+    controllers: {},
+    collections: {},
+    views: {},
+    config: {},
+    base: {}
+});
+app.addRegions({
+    menu: '.menu',
+    content: '.content'
+});
+
+
+var nedb = require('nedb');
+var q = require('Q');
+
+//lib
+require('./js/http')(app, q);
+
+/**
+ * App cocponents
+ */
+//Models
+require('./js/models/baseModel')(app, q, settings(), Backbone, nedb);
+require('./js/models/filmModel')(app, q);
+
+// Controllers
+require('./js/controllers/baseController')(app);
+require('./js/controllers/indexController')(app);
+require('./js/controllers/filmController')(app);
+
+//Router
+require('./js/config/routers')(app, Marionette);
+
+//Views
+require('./js/views/film/filmView')(app);
+require('./js/views/film/filmCollection')(app);
+
+
+app.on('start', function () {
+    Backbone.history.start();
+});
+
+
+win = settings().gui.Window.get();
 win.log = console.log.bind(console);
 
 win.debug = function () {
@@ -31,36 +77,3 @@ win.error = function () {
     console.error.apply(console, params);
     fs.appendFileSync(path.join(Settings().dataPath, 'logs.txt'), '\n\n' + arguments[0]); // log errors;
 };
-
-$ = require('jquery');
-_ = require('backbone.marionette/node_modules/underscore');
-Backbone = require('backbone.marionette/node_modules/backbone');
-Backbone.$ = $;
-Marionette = require('backbone.marionette');
-
-
-App = new Marionette.Application();
-_.extend(App, {
-    Models: {},
-    Controllers: {},
-    Collections: {},
-    Views: {},
-    Config: {},
-    Base: {}
-});
-App.addRegions({
-    menu: '.menu',
-    content: '.content'
-});
-
-Nedb = require('nedb');
-Q = require('Q');
-require('./js/models/BaseModel')(App, Backbone, Nedb, Q, Settings());
-require('./js/models/FilmModel')(App);
-
-
-App.on('start', function () {
-    Backbone.history.start();
-
-});
-

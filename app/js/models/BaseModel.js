@@ -2,13 +2,13 @@
  * Created by vaso on 17.03.15.
  */
 path = require('path');
-module.exports = function (App, Backbone, Nedb, Q, Settings) {
+module.exports = function (app, q, settings, Backbone, nedb) {
     'use strict';
 
-    var BaseModel = Backbone.Model.extend({}, {
+    var baseModel = Backbone.Model.extend({}, {
         dataStore: function () {
             return new Nedb({
-                filename: path.join(Settings.databaseLocation, this.store),
+                filename: path.join(settings.databaseLocation, this.store),
                 autoload: true
             });
         },
@@ -19,7 +19,7 @@ module.exports = function (App, Backbone, Nedb, Q, Settings) {
         }
     });
 
-    App.Models.BaseModel = BaseModel;
+    app.models.baseModel = baseModel;
 
-    return App;
+    return app;
 }
