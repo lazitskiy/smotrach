@@ -6,7 +6,6 @@ module.exports = function (app) {
 
     var filmController = {
         index: function () {
-            console.debug('film/index');
 
             app.models.filmModel.providerFilmGet().then(function (films) {
                 console.log(JSON.parse(films).data.movies[0]);
