@@ -43,8 +43,8 @@ require('./js/controllers/filmController')(app);
 require('./js/config/routers')(app, Marionette);
 
 //Views
-require('./js/views/film/filmView')(app);
-require('./js/views/film/filmCollection')(app);
+//require('./js/views/film/filmView')(app);
+//require('./js/views/film/filmCollection')(app);
 
 
 app.on('start', function () {

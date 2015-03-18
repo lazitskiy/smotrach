@@ -9,7 +9,8 @@ module.exports = function (app) {
             console.debug('film/index');
 
             app.models.filmModel.providerFilmGet().then(function (films) {
-                console.debug(films);
+                console.log(JSON.parse(films).data.movies[0]);
+
 
             })
 

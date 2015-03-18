@@ -20,6 +20,13 @@ module.exports = function () {
     settings.databaseLocation = path.join(settings.dataPath, 'data');
 
     /**
+     * Media
+     */
+    settings.poster = {};
+    settings.poster.width = 230;
+
+
+    /**
      * Api settings
      */
     settings.provider = 'sdf';

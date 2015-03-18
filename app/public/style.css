@@ -12,12 +12,62 @@ a {
 a.active, a:hover {
     border-bottom: 3px solid #ff66cc;
 }
-h2, .h2 {
-    font-size: 30px;
+
+h2, .h2, h3 {
     color: #ff66cc;
 }
 
-.menu{
+h2, .h2 {
+    font-size: 30px;
+}
+
+h3, .h3 {
+    font-size: 24px;
+}
+
+h2, h3 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+.content{
+    height: 485px;
+    overflow-y: auto;
+}
+.content::-webkit-scrollbar-track
+ {
+     border-radius: 10px;
+     background-color: #999;
+ }
+
+.content::-webkit-scrollbar
+{
+    width: 4px;
+
+}
+
+.content::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #ff66cc;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.menu {
     height: 34px;
 }
 
@@ -30,6 +80,43 @@ body {
 
 .menu li {
     display: inline-block;
+}
+
+.raiting:before {
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMiAxMiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTIgMTIiPjxwYXRoIGZpbGw9IiNGMDlBMjAiIGQ9Ik03LjMgNUgxMUw4LjIgNy42bDEgMy43TDYgOS4xbC0zLjIgMi4yIDEtMy43TDEgNWgzLjdMNiAxLjMgNy4zIDV6TTYgMy4zbC0uOCAyLjRIMi42bDEuOSAxLjYtLjYgMi41TDYgOC4zbDIuMiAxLjUtLjctMi41IDEuOS0xLjdINi44TDYgMy4zeiIvPjwvc3ZnPg==');
+}
+
+.film .poster {
+    width: 230px;
+    height: 345px;
+    background: url('http://s.ynet.io/assets/images/movies/the_taking_of_deborah_logan_2014/medium-cover.jpg');
+    background-size: 100% 100%;
+    background-position: center;
+    transition: all 0.250s ease-out;
+}
+
+.film .poster:hover {
+    background-size: 110% 110%;
+    cursor: pointer;
+}
+
+.scale:hover {
+    display: block;
+    -webkit-transform: scale(1.2, 1.2);
+    -webkit-transition-timing-function: ease-out;
+    -webkit-transition-duration: 250ms;
+}
+
+.m-l-r {
+    margin: 0px 10px;
+}
+
+.left {
+    float: left;
+}
+
+.clear {
+    clear: both;
 }
 
 #drop-mask {

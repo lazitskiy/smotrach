@@ -15,9 +15,9 @@
     "frame": true,
     "min_width": 540,
     "min_height": 180,
-    "height": 150,
+    "height": 485,
     "resizable": true,
-    "position": "top"
+    "position": "center"
   },
   "author": "vaso",
   "license": "HUI",
