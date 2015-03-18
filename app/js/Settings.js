@@ -16,6 +16,10 @@ module.exports = function () {
     settings.gui = gui;
     settings.dataPath = gui.App.dataPath;
     settings.appName = 'Smotrach';
+
+    settings.viewPath = 'js/views/';
+    settings.templateExtension = 'tpl';
+
     settings.tmpLocation = path.join(os.tmpDir(), 'Smotrach');
     settings.databaseLocation = path.join(settings.dataPath, 'data');
 
@@ -24,6 +28,7 @@ module.exports = function () {
      */
     settings.poster = {};
     settings.poster.width = 230;
+    settings.poster.height = 345;
 
 
     /**

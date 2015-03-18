@@ -31,8 +31,12 @@ require('./js/http')(app, q);
  * App cocponents
  */
 //Models
-require('./js/models/baseModel')(app, q, settings(), Backbone, nedb);
+require('./js/models/baseModel')(app, q, Backbone, settings(), nedb);
 require('./js/models/filmModel')(app, q);
+
+//Views
+require('./js/views/baseView')(app, q, Backbone, settings(), $);
+require('./js/views/index/index')(app);
 
 // Controllers
 require('./js/controllers/baseController')(app);
@@ -42,14 +46,38 @@ require('./js/controllers/filmController')(app);
 //Router
 require('./js/config/routers')(app, Marionette);
 
-//Views
-//require('./js/views/film/filmView')(app);
+
 //require('./js/views/film/filmCollection')(app);
 
 
 app.on('start', function () {
+
+    var init_regions = function () {
+        var defer = q.defer();
+        var template = document.querySelector('#menu');
+
+        $.get(template.src, function (res) {
+            var parent = $(template).parent();
+            parent.html(res);
+            $(template).remove();
+            return defer.resolve();
+        });
+        return defer.promise;
+    }
+
+    init_regions().then(function () {
+      //  App.menu.empty();
+    });
+
     Backbone.history.start();
+
 });
+
+
+
+
+
+
 
 
 win = settings().gui.Window.get();

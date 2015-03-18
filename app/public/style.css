@@ -33,39 +33,44 @@ h2, h3 {
 body::-webkit-scrollbar {
     display: none;
 }
-.content{
+
+.content {
     height: 485px;
     overflow-y: auto;
 }
-.content::-webkit-scrollbar-track
- {
-     border-radius: 10px;
-     background-color: #999;
- }
 
-.content::-webkit-scrollbar
-{
+.content::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #999;
+}
+
+.content::-webkit-scrollbar {
     width: 4px;
 
 }
 
-.content::-webkit-scrollbar-thumb
-{
+.content::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
     background-color: #ff66cc;
 }
 
+#header {
+    height: 30px;
+    z-index: 10;
+    -webkit-app-region: drag;
 
+}
 
+.nav-right {
+    right: 8px;
+    -webkit-app-region: no-drag;
+}
 
-
-
-
-
-
-
-
+.left {
+    left: 8px;
+    -webkit-app-region: no-drag;
+}
 
 .menu {
     height: 34px;
@@ -86,26 +91,21 @@ body {
     background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMiAxMiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTIgMTIiPjxwYXRoIGZpbGw9IiNGMDlBMjAiIGQ9Ik03LjMgNUgxMUw4LjIgNy42bDEgMy43TDYgOS4xbC0zLjIgMi4yIDEtMy43TDEgNWgzLjdMNiAxLjMgNy4zIDV6TTYgMy4zbC0uOCAyLjRIMi42bDEuOSAxLjYtLjYgMi41TDYgOC4zbDIuMiAxLjUtLjctMi41IDEuOS0xLjdINi44TDYgMy4zeiIvPjwvc3ZnPg==');
 }
 
-.film .poster {
-    width: 230px;
-    height: 345px;
-    background: url('http://s.ynet.io/assets/images/movies/the_taking_of_deborah_logan_2014/medium-cover.jpg');
-    background-size: 100% 100%;
+.item .poster {
     background-position: center;
     transition: all 0.250s ease-out;
 }
 
-.film .poster:hover {
+.item .poster:hover {
     background-size: 110% 110%;
     cursor: pointer;
 }
-
-.scale:hover {
-    display: block;
-    -webkit-transform: scale(1.2, 1.2);
-    -webkit-transition-timing-function: ease-out;
-    -webkit-transition-duration: 250ms;
+.item .title{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
+
 
 .m-l-r {
     margin: 0px 10px;
@@ -113,6 +113,14 @@ body {
 
 .left {
     float: left;
+}
+
+.right {
+    float: right;
+}
+
+.abs {
+    position: absolute;
 }
 
 .clear {

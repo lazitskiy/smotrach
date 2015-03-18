@@ -6,7 +6,20 @@ module.exports = function (app) {
 
     var indexController = {
         index: function () {
-            console.log('index/index');
+
+            app.models.filmModel.providerFilmGet().then(function (films) {
+                return JSON.parse(films).data.movies;
+            }).then(function (films) {
+                var view = new app.views.indexIndexVeiw({
+                    films: films
+                });
+                return view.preRender().then(function () {
+                    view.render();
+                    app.content.show(view);
+                })
+            }).fail(function (error) {
+                console.log("error occured: " + error);
+            });
         }
     }
 

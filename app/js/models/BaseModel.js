@@ -2,12 +2,12 @@
  * Created by vaso on 17.03.15.
  */
 path = require('path');
-module.exports = function (app, q, settings, Backbone, nedb) {
+module.exports = function (app, q, Backbone, settings, nedb) {
     'use strict';
 
     var baseModel = Backbone.Model.extend({}, {
         dataStore: function () {
-            return new Nedb({
+            return new nedb({
                 filename: path.join(settings.databaseLocation, this.store),
                 autoload: true
             });
