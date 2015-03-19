@@ -47,6 +47,17 @@ module.exports = function (app, q, Backbone, settings, nedb) {
                 }
             });
             return deferred.promise;
+        },
+        findOne: function (criteria) {
+            var deferred = q.defer();
+            this.dataStore().findOne(criteria, function (err, object) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(object);
+                }
+            });
+            return deferred.promise;
         }
     });
 

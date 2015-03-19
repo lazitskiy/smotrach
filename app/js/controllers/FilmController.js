@@ -11,6 +11,28 @@ module.exports = function (app) {
                 console.log(JSON.parse(films).data.movies[0]);
             })
 
+        },
+
+        filmDetail: function (film_id) {
+
+            app.httpRequest.request('http://yts.re/torrent/download/4F9AC838FD94BC4529E3F9025356FED90EC2280F.torrent')
+                .then(function (data) {
+                  //  console.debug(data);
+                });
+
+            film_id = parseInt(film_id);
+            app.models.filmModel.findOne({id: film_id})
+                .then(function (film) {
+                    var view = new app.views.filmDetailVeiw({
+                        film: film
+                    });
+                    view.preRender().then(function () {
+                        view.render();
+                        app.content.show(view);
+                    })
+                });
+
+
         }
     }
 

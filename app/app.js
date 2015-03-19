@@ -40,6 +40,7 @@ require('./js/models/settingModel')(app, q);
 //Views
 require('./js/views/baseView')(app, q, Backbone, settings(), $);
 require('./js/views/index/index')(app);
+require('./js/views/film/detail')(app);
 
 // Controllers
 require('./js/controllers/baseController')(app);

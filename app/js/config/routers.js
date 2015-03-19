@@ -14,7 +14,8 @@ module.exports = function (app, Marionette) {
     new Marionette.AppRouter({
         controller: app.controllers.filmController,
         appRoutes: {
-            'film': 'index'
+            'film': 'index',
+            'film/:film_id': 'filmDetail'
         }
     });
 }
