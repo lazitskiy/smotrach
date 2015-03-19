@@ -9,7 +9,7 @@ a {
     display: block;
 }
 
-a.active, a:hover {
+.menu a.active, .menu a:hover {
     border-bottom: 3px solid #ff66cc;
 }
 

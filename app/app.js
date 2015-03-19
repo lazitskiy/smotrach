@@ -23,12 +23,15 @@ app.addRegions({
 
 var nedb = require('nedb');
 var q = require('Q');
+var webtorrent = require('webtorrent');
 
 //lib
 require('./js/http')(app, q);
-app._ = _;
-app.settings = settings();
 
+app._ = _;
+app.$ = $;
+app.settings = settings();
+app.webtorrent = webtorrent;
 /**
  * App cocponents
  */

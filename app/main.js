@@ -4,8 +4,12 @@ var dataPath = '/Users/vaso/htdocs/node/4.smotrach/app/';
 var WebTorrent = require('webtorrent');
 var fs = require('fs');
 
-var client = new WebTorrent();
-var torrentFile = dataPath + 'tor/forever.torrent';
+var client = new WebTorrent({
+    dht: true,
+    maxPeers: 200,
+    tracker: true
+});
+var torrentFile = dataPath + 'tor/hui.torrent';
 
 client.add(torrentFile, {
     tmp: dataPath + 'tor/tmp'
@@ -18,13 +22,12 @@ client.add(torrentFile, {
     setInterval(refreshStatus, 1000, torrent);
 
 
-    /*    torrent.files.forEach(function (file) {
-     // Stream each file to the disk
-     var source = file.createReadStream()
-     var destination = fs.createWriteStream(dataPath + 'tor/' + file.name);
-     console.log(file.name)
-     source.pipe(destination)
-     })*/
+    torrent.files.forEach(function (file) {
+        // Stream each file to the disk
+        console.log(file.name)
+        var destination = fs.createWriteStream(dataPath + 'tor/' + file.name);
+        file.createReadStream().pipe(destination)
+    })
 });
 
 function refreshStatus(torrent) {
