@@ -8,14 +8,45 @@ module.exports = function (app, q, Backbone, settings, nedb) {
     var baseModel = Backbone.Model.extend({}, {
         dataStore: function () {
             return new nedb({
-                filename: path.join(settings.databaseLocation, this.store),
+                filename: path.join(settings.databaseLocation, this.nedbStore),
                 autoload: true
             });
         },
 
+        insert: function (objects) {
+            var deferred = q.defer();
+            this.dataStore().insert(objects, function (err) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve();
+                }
+            });
+            return deferred.promise;
+        },
 
-        findAll: function (criteria) {
-            this.dataStore();
+        removeAll: function (options) {
+            var deferred = q.defer();
+            this.dataStore().remove({}, {multi: true}, function (err, numRemoved) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve();
+                }
+            });
+            return deferred.promise;
+        },
+
+        findAll: function () {
+            var deferred = q.defer();
+            this.dataStore().find({}, function (err, object) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(object);
+                }
+            });
+            return deferred.promise;
         }
     });
 

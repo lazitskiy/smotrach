@@ -23,12 +23,15 @@ module.exports = function () {
     settings.tmpLocation = path.join(os.tmpDir(), 'Smotrach');
     settings.databaseLocation = path.join(settings.dataPath, 'data');
 
+
     /**
      * Media
      */
+        //На сколько кешировать ответ в фильмами
+    settings.intervalFilmUpload = 5 * 60 * 1000;
     settings.poster = {};
-    settings.poster.width = 230;
-    settings.poster.height = 345;
+    settings.poster.width = 130;
+    settings.poster.height = 195;
 
 
     /**

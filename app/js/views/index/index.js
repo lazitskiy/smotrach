@@ -10,12 +10,10 @@ module.exports = function (app) {
         template: '#index-index',
 
         serializeData: function () {
-
             return {
                 films: this.options.films
             }
         }
-
 
     });
 

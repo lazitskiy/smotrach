@@ -72,10 +72,6 @@ body::-webkit-scrollbar {
     -webkit-app-region: no-drag;
 }
 
-.menu {
-    height: 34px;
-}
-
 body {
     background: #050505;
     font-family: 'Open Sans', Arial, sans-serif;
@@ -94,11 +90,14 @@ body {
 .item .poster {
     background-position: center;
     transition: all 0.250s ease-out;
+    border-radius: 5px;
 }
 
 .item .poster:hover {
     background-size: 110% 110%;
     cursor: pointer;
+    border: 3px solid #ff66cc;
+    box-sizing:border-box;
 }
 .item .title{
     text-overflow: ellipsis;

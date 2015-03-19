@@ -8,7 +8,7 @@ module.exports = function (app, q) {
     'use strict';
 
     var filmModel = app.models.baseModel.extend({}, {
-        store: 'film',
+        nedbStore: 'film.db',
 
         providerFilmGet: function () {
             var deferred = q.defer();

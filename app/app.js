@@ -26,6 +26,8 @@ var q = require('Q');
 
 //lib
 require('./js/http')(app, q);
+app._ = _;
+app.settings = settings();
 
 /**
  * App cocponents
@@ -33,6 +35,7 @@ require('./js/http')(app, q);
 //Models
 require('./js/models/baseModel')(app, q, Backbone, settings(), nedb);
 require('./js/models/filmModel')(app, q);
+require('./js/models/settingModel')(app, q);
 
 //Views
 require('./js/views/baseView')(app, q, Backbone, settings(), $);
@@ -66,18 +69,12 @@ app.on('start', function () {
     }
 
     init_regions().then(function () {
-      //  App.menu.empty();
+        //  App.menu.empty();
     });
 
     Backbone.history.start();
 
 });
-
-
-
-
-
-
 
 
 win = settings().gui.Window.get();

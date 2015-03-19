@@ -18,7 +18,7 @@
             <div class="poster" style="background-image: url('<%= film.medium_cover_image %>');">
             </div>
             <div class="title">
-                <%= film.title %>
+                <a href="#film"><%= film.title %></a>
             </div>
             <div class="year">
                 <%= film.year %>

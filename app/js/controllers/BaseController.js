@@ -4,7 +4,15 @@
 module.exports = function (app) {
     'use strict';
 
-    var baseController = {}
+    var baseController = {
+        /**
+         * Проверим время последней загрузки фильмов.
+         * @param options
+         */
+        checkDownloaded: function (options) {
+            alert(123);
+        }
+    }
 
     app.controllers.baseController = baseController;
 
