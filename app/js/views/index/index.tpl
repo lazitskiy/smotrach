@@ -1,5 +1,5 @@
 <div class="content scrollbar">
-    <h2>Новинки</h2>
+    <h2> <%= i18n.__('News') %></h2>
 
     <style>
         .item{

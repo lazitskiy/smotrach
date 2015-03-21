@@ -13,17 +13,24 @@ _.extend(app, {
     collections: {},
     views: {},
     config: {},
-    base: {}
+    base: {},
+    lang: {}
 });
 app.addRegions({
     menu: '.menu',
     content: '.content'
 });
 
+// Minimum percentage to open video
+app.MIN_PERCENTAGE_LOADED = 0.5;
+// Minimum bytes loaded to open video
+app.MIN_SIZE_LOADED = 10 * 1024 * 1024;
+
 
 var nedb = require('nedb');
 var q = require('Q');
-var webtorrent = require('webtorrent');
+
+require('./js/streamer')(app);
 
 //lib
 require('./js/http')(app, q);
@@ -31,7 +38,10 @@ require('./js/http')(app, q);
 app._ = _;
 app.$ = $;
 app.settings = settings();
-app.webtorrent = webtorrent;
+
+require('./js/language')(app);
+var i18n = app.i18n;
+
 /**
  * App cocponents
  */
@@ -45,6 +55,7 @@ require('./js/views/baseView')(app, q, Backbone, settings(), $);
 require('./js/views/index/index')(app);
 require('./js/views/film/detail')(app);
 
+
 // Controllers
 require('./js/controllers/baseController')(app);
 require('./js/controllers/indexController')(app);
@@ -54,12 +65,9 @@ require('./js/controllers/filmController')(app);
 require('./js/config/routers')(app, Marionette);
 
 
-//require('./js/views/film/filmCollection')(app);
-
-
 app.on('start', function () {
 
-    var init_regions = function () {
+    var init_menu = function () {
         var defer = q.defer();
         var template = document.querySelector('#menu');
 
@@ -72,8 +80,43 @@ app.on('start', function () {
         return defer.promise;
     }
 
-    init_regions().then(function () {
+
+    init_menu().then(function () {
         //  App.menu.empty();
+
+        var width = parseInt(localStorage.width ? localStorage.width : Settings.defaultWidth);
+        var height = parseInt(localStorage.height ? localStorage.height : Settings.defaultHeight);
+        var x = parseInt(localStorage.posX ? localStorage.posX : -1);
+        var y = parseInt(localStorage.posY ? localStorage.posY : -1);
+
+        // reset app width when the width is bigger than the available width
+        if (screen.availWidth < width) {
+            win.info('Window too big, resetting width');
+            width = screen.availWidth;
+        }
+
+        // reset app height when the width is bigger than the available height
+        if (screen.availHeight < height) {
+            win.info('Window too big, resetting height');
+            height = screen.availHeight;
+        }
+
+        // reset x when the screen width is smaller than the window x-position + the window width
+        if (x < 0 || (x + width) > screen.width) {
+            win.info('Window out of view, recentering x-pos');
+            x = Math.round((screen.availWidth - width) / 2);
+        }
+
+        // reset y when the screen height is smaller than the window y-position + the window height
+        if (y < 0 || (y + height) > screen.height) {
+            win.info('Window out of view, recentering y-pos');
+            y = Math.round((screen.availHeight - height) / 2);
+        }
+
+        win.zoomLevel = zoom;
+        win.resizeTo(width, height);
+        win.moveTo(x, y);
+
     });
 
     Backbone.history.start();
@@ -104,5 +147,51 @@ win.error = function () {
     var params = Array.prototype.slice.call(arguments, 1);
     params.unshift('%c[%cERROR%c] ' + arguments[0], 'color: black;', 'color: red;', 'color: black;');
     console.error.apply(console, params);
-    fs.appendFileSync(path.join(Settings().dataPath, 'logs.txt'), '\n\n' + arguments[0]); // log errors;
+    fs.appendFileSync(path.join(settings().dataPath, 'logs.txt'), '\n\n' + arguments[0]); // log errors;
 };
+
+
+var deleteFolder = function (path) {
+
+    if (typeof path !== 'string') {
+        return;
+    }
+
+    try {
+        var files = [];
+        if (fs.existsSync(path)) {
+            files = fs.readdirSync(path);
+            files.forEach(function (file, index) {
+                var curPath = path + '\/' + file;
+                if (fs.lstatSync(curPath).isDirectory()) {
+                    deleteFolder(curPath);
+                } else {
+                    fs.unlinkSync(curPath);
+                }
+            });
+            fs.rmdirSync(path);
+        }
+    } catch (err) {
+        win.error('deleteFolder()', err);
+    }
+};
+
+
+win.on('resize', function (width, height) {
+    localStorage.width = Math.round(width);
+    localStorage.height = Math.round(height);
+});
+
+win.on('move', function (x, y) {
+    localStorage.posX = Math.round(x);
+    localStorage.posY = Math.round(y);
+});
+win.on('close', function () {
+    // deleteFolder(app.settings.tmpLocation);
+    win.close(true);
+});
+
+// Show 404 page on uncaughtException
+process.on('uncaughtException', function (err) {
+    win.error(err, err.stack);
+});

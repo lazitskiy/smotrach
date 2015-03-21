@@ -23,7 +23,9 @@ module.exports = function (app, q, Backbone, settings, $) {
             });
 
             return defer.promise;
-        }
+        },
+
+
 
     });
 

@@ -12,19 +12,23 @@
         <% }); %>
     </div>
     <div>
-        <h2>Год <%= film.year %></h2>
+        <h2>Год <%= film.year %>
+            <div id="player"></div>
+        </h2>
     </div>
     <div>
         <h2>Рейтинг <%= film.rating %></h2>
     </div>
     <div>
         <h2>Торренты</h2>
-        Видео
-        <video></video>
+
 
         <% _.each(film.torrents, function(torrent){ %>
         <button>Смотреть <%= torrent.quality %></button>
         <a href="<%= torrent.url %>" class="torrent_link">Ссылка</a>
         <% }); %>
     </div>
+
+
+
 </div>

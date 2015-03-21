@@ -1,6 +1,7 @@
 /**
  * Created by vas on 18.03.2015.
  */
+var http = require('http');
 
 module.exports = function (app) {
     'use strict';
@@ -22,38 +23,13 @@ module.exports = function (app) {
             'click @ui.link': 'launchPlayer'
         },
 
+        // Alias fo common/player::
         launchPlayer: function (e) {
             e.preventDefault();
             var torrent_url = e.target.href;
-
-            //    app.httpRequest.request(torrent_url)
-            //    .then(function (torrent_buffer) {
             var _this = this;
 
-            var client = new app.webtorrent();
-            client.add(torrent_url, {tmp: '/Users/vaso/htdocs/node/4.smotrach/app/tor/tmp'}, function (torrent) {
-                // Got torrent metadata!
-                console.log('Torrent info hash:', torrent.infoHash);
-                console.log('Magnet:', torrent.magnetURI);
-
-                var arr_torrents = app._.filter(torrent.files, function (el, k) {
-                    return el.name.endsWith('.mp4') || el.name.endsWith('.avi') || el.name.endsWith('.mkv');
-                })
-
-
-                setInterval(_this.refreshStatus, 1000, torrent);
-
-                // Let's say the first file is a webm (vp8) or mp4 (h264) video...
-                var file = torrent.files[0];
-                // Create a video element
-                var video = app.$('video');
-                video.attr('controls', true);
-
-                // Stream the video into the video tag
-                file.createReadStream().pipe(video)
-
-            })
-            // });
+            app.streamer.init(torrent_url);
 
         },
         refreshStatus: function (torrent) {

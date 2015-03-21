@@ -12,7 +12,7 @@ module.exports = function (app, q) {
 
         providerFilmGet: function () {
             var deferred = q.defer();
-            app.httpRequest.request('http://yts.re/api/v2/list_movies.json').then(function (data) {
+            app.httpRequest.request('http://yts.to/api/v2/list_movies.json').then(function (data) {
                 deferred.resolve(data);
             });
             return deferred.promise;

@@ -15,6 +15,8 @@ module.exports = function (app) {
                 view.preRender().then(function () {
                     view.render();
                     app.content.show(view);
+                }).fail(function (err) {
+                    console.error(err);
                 })
             });
 

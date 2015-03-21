@@ -9,8 +9,8 @@
 
 <nav class="menu">
     <ul>
-        <li><a class="active" href="#">Sm.ach</a></li>
-        <li><a href="#film">Фильмы</a></li>
-        <li><a href="#serial">Сериалы</a></li>
+        <li><a class="active" href="#"><%= i18n.__('AppName') %></a></li>
+        <li><a href="#film"><%= i18n.__('Movies') %></a></li>
+        <li><a href="#serial"><%= i18n.__('Series') %></a></li>
     </ul>
 </nav>
