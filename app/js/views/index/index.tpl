@@ -15,10 +15,10 @@
     <div class="films">
         <% _.each(films, function(film){ %>
         <div class="item m-l-r left">
-            <div class="poster" style="background-image: url('<%= film.medium_cover_image %>');">
+            <div class="poster" style="background-image: url('<%= film.poster %>');">
             </div>
             <div class="title">
-                <a href="#film/<%= film.id %>"><%= film.title %></a>
+                <a class="theme" href="#film/<%= film.id %>"><%= film.title %></a>
             </div>
             <div class="year">
                 <%= film.year %>

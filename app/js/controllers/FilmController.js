@@ -15,10 +15,10 @@ module.exports = function (app) {
 
         filmDetail: function (film_id) {
 
-            app.httpRequest.request('http://yts.re/torrent/download/4F9AC838FD94BC4529E3F9025356FED90EC2280F.torrent')
+           /* app.httpRequest.request('http://yts.to/torrent/download/4F9AC838FD94BC4529E3F9025356FED90EC2280F.torrent')
                 .then(function (data) {
-                  //  console.debug(data);
-                });
+                    console.debug(data);
+                });*/
 
             film_id = parseInt(film_id);
             app.models.filmModel.findOne({id: film_id})

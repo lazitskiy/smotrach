@@ -28,7 +28,7 @@ module.exports = function () {
      * Media
      */
     //На сколько кешировать ответ c фильмами. 1 Час
-    settings.intervalFilmUpload = 60 * 60 * 1000;
+    settings.intervalFilmUpload = 0 * 60 * 1000;
     settings.poster = {};
     settings.poster.width = 130;
     settings.poster.height = 195;

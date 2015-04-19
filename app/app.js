@@ -180,6 +180,7 @@ var deleteFolder = function (path) {
 win.on('resize', function (width, height) {
     localStorage.width = Math.round(width);
     localStorage.height = Math.round(height);
+
 });
 
 win.on('move', function (x, y) {

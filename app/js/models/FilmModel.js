@@ -12,7 +12,7 @@ module.exports = function (app, q) {
 
         providerFilmGet: function () {
             var deferred = q.defer();
-            app.httpRequest.request('http://yts.to/api/v2/list_movies.json').then(function (data) {
+            app.httpRequest.request('http://smotrach.loc/api/v4/movies/list').then(function (data) {
                 deferred.resolve(data);
             });
             return deferred.promise;
@@ -32,16 +32,15 @@ module.exports = function (app, q) {
 
                 console.log('load films from provider');
                 return app.models.filmModel.providerFilmGet().then(function (data) {
+
                     var parsed = JSON.parse(data).data.movies;
                     return app._.map(parsed, function (film, key, list) {
                         return {
                             id: film.id,
-                            genres: film.genres,
-                            medium_cover_image: film.medium_cover_image,
-                            title: film.title,
+                            poster: film.poster,
+                            title: film.name_ru,
                             year: film.year,
-                            rating: film.rating,
-                            torrents: film.torrents
+                            rating_int: film.rating_int
                         };
                     });
 

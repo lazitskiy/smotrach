@@ -1,9 +1,134 @@
-* {
-    padding: 0;
+/** * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/) * http://cssreset.com */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
     margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
 }
 
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
 a {
+    border: 0;
+    text-decoration: none !important;
+}
+.menu a {
     color: #999;
     text-decoration: none;
     display: block;
@@ -15,19 +140,6 @@ a {
 
 h2, .h2, h3 {
     color: #ff66cc;
-}
-
-h2, .h2 {
-    font-size: 30px;
-}
-
-h3, .h3 {
-    font-size: 24px;
-}
-
-h2, h3 {
-    margin-top: 30px;
-    margin-bottom: 10px;
 }
 
 body::-webkit-scrollbar {
@@ -73,10 +185,14 @@ body::-webkit-scrollbar {
 }
 
 body {
-    background: #050505;
-    font-family: 'Open Sans', Arial, sans-serif;
-    font-size: 13px;
-    color: #999
+    line-height: 1.42857143;
+    font-family: Arimo, Arial, Helvetica, "Lucida Grande", sans-serif;
+    letter-spacing: -0.03em;
+    font-size: 16px;
+    margin: 0 auto;
+    background-color: #000;
+    -webkit-font-smoothing: antialiased;
+    color: #fff;
 }
 
 .menu li {
@@ -97,14 +213,14 @@ body {
     background-size: 110% 110%;
     cursor: pointer;
     border: 3px solid #ff66cc;
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
-.item .title{
+
+.item .title {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
 }
-
 
 .m-l-r {
     margin: 0px 10px;
@@ -169,4 +285,65 @@ body {
     left: 4px;
     width: 100%;
     height: 4px;
+}
+
+.w25 {
+    width: 25%;
+    float: left;
+}
+
+.w75 {
+    width: 75%;
+    float: left;
+}
+#movie-content {
+
+}
+
+.movie-poster {
+    padding-right: 16px;
+}
+
+.movie-poster img {
+    border: 5px solid #fff;
+    border-radius: 4px;
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+#movie-info {
+    float: left;
+    text-align: left;
+}
+
+
+#movie-info h1, #movie-info h2 {
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+}
+
+#movie-info h1 {
+    font-size: 2.5em;
+    margin-bottom: 24px;
+    line-height: 42px;
+}
+
+#movie-info h2 {
+    font-size: 1.2em;
+}
+.p {
+    margin-top: 10px;
+}
+a.theme {
+    transition: color 0.25s ease-in-out;
+    color: #36bce6;
+}
+
+a.theme:hover {
+    color: #2071f0;
 }
