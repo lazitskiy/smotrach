@@ -6,11 +6,18 @@ module.exports = function (app, q, Backbone, settings, nedb) {
     'use strict';
 
     var baseModel = Backbone.Model.extend({}, {
+
+        connection: [],
+
         dataStore: function () {
-            return new nedb({
+            if ((this.connection[this.nedbStore] !== undefined) && (this.connection[this.nedbStore] !== null)) {
+                return this.connection[this.nedbStore];
+            }
+            this.connection[this.nedbStore] = new nedb({
                 filename: path.join(settings.databaseLocation, this.nedbStore),
                 autoload: true
             });
+            return this.connection[this.nedbStore];
         },
 
         insert: function (objects) {
@@ -50,6 +57,8 @@ module.exports = function (app, q, Backbone, settings, nedb) {
         },
         findOne: function (criteria) {
             var deferred = q.defer();
+
+
             this.dataStore().findOne(criteria, function (err, object) {
                 if (err) {
                     deferred.reject(err);
